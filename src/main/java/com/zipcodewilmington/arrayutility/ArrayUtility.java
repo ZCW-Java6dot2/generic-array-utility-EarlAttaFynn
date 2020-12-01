@@ -1,5 +1,6 @@
 package com.zipcodewilmington.arrayutility;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -87,6 +88,9 @@ public class ArrayUtility<T> {
         int count = getNumberOfOccurrences(valueToRemove);
         T[] result = Arrays.copyOf(inputArray, inputArray.length - count);
         List<T> intermediate = new ArrayList<T>(Arrays.asList(inputArray));
+
+        //Also works
+//        T[] result = (T[]) Array.newInstance(valueToRemove.getClass(), intermediate.size());
 
 
         for (T i : inputArray) {
