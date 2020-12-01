@@ -14,7 +14,7 @@ public class ArrayUtility<T> {
         this.inputArray = inputArray;
     }
 
-    public <T> Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
+    public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
         //Declarations
         T[] merged = (T[]) new Object[arrayToMerge.length + inputArray.length];
         Map<T, Integer> map = new HashMap<>();
@@ -49,7 +49,7 @@ public class ArrayUtility<T> {
 
     }
 
-    public <T> T getMostCommonFromMerge(T[] arrayToMerge) {
+    public T getMostCommonFromMerge(T[] arrayToMerge) {
         //Declarations
         T[] merged = (T[]) new Object[arrayToMerge.length + inputArray.length];
         Map<T, Integer> map = new HashMap<>();
@@ -80,8 +80,7 @@ public class ArrayUtility<T> {
                 mostCommon = i;
             }
         }
-//      return mostCommon.getValue();
-        return null;
+        return mostCommon.getKey();
     }
 
 
@@ -90,8 +89,26 @@ public class ArrayUtility<T> {
         return null;
     }
 
+    //TODO : Finish method, need to count occurrences of valueToEvaluate rather than most common.
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
+        //Declarations
+        Map<T, Integer> map = new HashMap<>();
 
-        return null;
+        //Calculating most common value
+        for (T i : inputArray) {
+            Integer value = map.get(i);
+            map.put(i, value == null ? 1 : value + 1);
+        }
+
+        Map.Entry<T, Integer> mostCommon = null;
+
+        for (Map.Entry<T, Integer> i : map.entrySet()) {
+            if (mostCommon == null || i.getValue() > mostCommon.getValue()) {
+                mostCommon = i;
+            }
+        }
+        return mostCommon.getValue();
     }
+
 }
+
